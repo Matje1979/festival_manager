@@ -1,9 +1,10 @@
 from django.db import models
 from location_field.models.plain import PlainLocationField
 from django_google_maps import fields as map_fields
-# Create your models here.
+
 
 class Event(models.Model):
+
     name=models.CharField(max_length=50, verbose_name="Ime")
     beggining=models.DateTimeField(verbose_name="Početak")
     end=models.DateTimeField(verbose_name="Kraj")
@@ -21,25 +22,30 @@ class Event(models.Model):
         return self.name
 
     class Meta:
+
         verbose_name_plural = "Dogadjaji"
         verbose_name = "Dogadjaj"
 
     def get_absolute_url(self):
-        return reverse('app-home')
+
+        return reverse('app-home') #this is a success url for generic views.
 
 
 class Visitor(models.Model):
+
     first_name=models.CharField(max_length=50, verbose_name="Ime")
     last_name=models.CharField(max_length=50, verbose_name="Prezime")
     email=models.EmailField(verbose_name="Emejl")
-    event=models.ForeignKey(Event, on_delete=models.CASCADE, verbose_name="Dogadjaj")
-
+    event=models.ForeignKey(Event, on_delete=models.CASCADE, verbose_name="Dogadjaj", related_name="posetioci") #if an event is deleted, so are its visitors.
+    applied_at=models.DateTimeField(auto_now_add=True, verbose_name="Vreme prijave")
+    
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
 
     class Meta:
-        verbose_name_plural = "Posetioci"
-        verbose_name = "Posetioc"
+
+        verbose_name_plural = "Posetioci" #Visible name of the set of class instances
+        verbose_name = "Posetilac"#Visible name of the class
 
 
 

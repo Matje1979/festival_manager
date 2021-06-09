@@ -1,6 +1,6 @@
 {% extends 'manager/base.html' %}
 {% load static %}
-{% load manager_custom_template_filters %}
+{% load custom_template_filters %}
 {% load crispy_forms_tags %}
 
 {% block content%}
@@ -32,6 +32,8 @@
 	</form>
 </div>
 <script>
+	//google map with the event location.
+
 	function initMap(){
 		var object_location = "{{ object.location }}";
 		console.log(typeof object_location)

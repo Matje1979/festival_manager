@@ -5,13 +5,19 @@ from django_admin_inline_paginator.admin import TabularInlinePaginated
 
 
 class VisitorInline(TabularInlinePaginated):
+
 	model = Visitor
-	fields = ('first_name', 'last_name', 'email')
-	per_page = 5
+	readonly_fields = ('first_name', 'last_name', 'email', 'applied_at') #readonly_fields instead of fields to make applied at field visible in admin 
+	per_page = 10    
 
 @admin.register(Event)
 class EventAdmin(admin.ModelAdmin):
+
+	model = Event
+	list_per_page=10  #Number of records to show on one page
+
 	class Media:
+
 		css={
 		    'all': ('css/admin/manager_admin.css',)
 		}
@@ -19,9 +25,6 @@ class EventAdmin(admin.ModelAdmin):
 	inlines = (
         VisitorInline,
 	)
-
-
-# admin.site.register(Event, EventAdmin)
+	
 admin.site.register(Visitor)
 
-# Register your models here.

@@ -1,5 +1,5 @@
 {% extends 'manager/base.html' %}
-{% load manager_custom_template_filters %}
+{% load custom_template_filters %}
 
 {% load static %}
 
@@ -26,16 +26,12 @@
 								<p class="desc">{{ event.city }}</p>
 								<p class="desc">{{ event.country }}</p>
 							</div>
-							<!-- <div class="social">
-								<ul>
-									<li class="facebook" style="width:33%;"><a href="#facebook"><span class="fa fa-facebook"></span></a></li>
-									<li class="twitter" style="width:34%;"><a href="#twitter"><span class="fa fa-twitter"></span></a></li>
-									<li class="google-plus" style="width:33%;"><a href="#google-plus"><span class="fa fa-google-plus"></span></a></li>
-								</ul>
-							</div> -->
 						</li>
 					{% endfor %}
 				</ul>
+				
+				<!--Pagination-->
+
 				{% if is_paginated %}
 				    {% if page_obj.has_previous %}
 					    <a class="btn btn-outline-info mb-4" href="?page=1">Prva</a>
